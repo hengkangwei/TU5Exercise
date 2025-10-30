@@ -13,6 +13,10 @@ interface CardProps {
   onRemoveFromCart: (productId: string) => Promise<void>;
 }
 
+const SIZES = ['S', 'M', 'L', 'XL'] as const;
+const MIN_PRICE = 10;
+const MAX_PRICE = 100;
+
 const Card: React.FC<CardProps> = ({ 
   id, 
   color, 
@@ -26,9 +30,8 @@ const Card: React.FC<CardProps> = ({
   
   // Generate random size and price (memoized per card id to stay consistent)
   const { size, price } = useMemo(() => {
-    const sizes = ['S', 'M', 'L', 'XL'];
-    const randomSize = sizes[Math.floor(Math.random() * sizes.length)];
-    const randomPrice = Math.floor(Math.random() * 91) + 10; // 10 to 100 inclusive
+    const randomSize = SIZES[Math.floor(Math.random() * SIZES.length)];
+    const randomPrice = Math.floor(Math.random() * (MAX_PRICE - MIN_PRICE + 1)) + MIN_PRICE;
     return { size: randomSize, price: randomPrice };
   }, [id]);
 
