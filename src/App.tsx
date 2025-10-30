@@ -12,6 +12,8 @@ interface Product {
   id: string;
   title: string;
   color: string;
+  size?: "S" | "M" | "L" | "XL";
+  price?: number;
 }
 
 const getCurrentUser = async (): Promise<string | null> => {
@@ -186,6 +188,8 @@ const App: React.FC = () => {
       id={product.id}
       color={product.color}
       title={product.title}
+      size={product.size}
+      price={product.price}
       currentUser={currentUser}
       isInCart={cart.includes(product.id)}
       onAddToCart={addToCart}
@@ -195,7 +199,10 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <h1>Rohan's Tee Shop</h1>
+      <h1> Welcome to our <b>My Tee Shop</b></h1>
+      <div className="button-container">
+        <a href="https://info.techup.today" target="_blank" className="button-techup">Learn more about our sponsor, TechUp, here!</a>
+      </div>
       <h2 
         id="kicker" 
         onClick={rotateKickerText}

@@ -11,21 +11,21 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  background: linear-gradient(45deg, #f5f5f5, #e8e4f0);
+  background: linear-gradient(45deg, #ffffff, #e8e4f0);
 }
 
 h1 {
   text-align: center;
-  font-size: 60px;
+  font-size: 50px;
   font-weight: 800;
-  color: darkgray;
+  color: var(--brand-dark-purple);
   font-family: "Inter Tight", sans-serif;
   margin-bottom: 5px;
 }
 
 h2 {
   text-align: center;
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 800;
   color: var(--brand-dark-purple);
   font-family: "Inter Tight", sans-serif;
@@ -62,4 +62,22 @@ h2.rotating {
   justify-content: center;
   align-items: flex-start;
   margin-bottom: 30px;
+}
+.button-container{
+  text-align: center;
+  text-align: center;
+  margin: 30px;
+}
+
+.button-techup {
+  text-align:center;
+  color:white;
+  text-decoration: none;
+  background-color:#FFCC00;
+  padding: 16px 120px;
+  border-radius: 18px;
+}
+.button-techup:hover {
+  color:white;
+  background-color:#FFCC00;
 }

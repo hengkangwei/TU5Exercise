@@ -37,6 +37,24 @@ export const TSHIRT_COLLECTION: TShirtProperties[] = [
   { id: "550e8400-e29b-41d4-a716-446655440028", color: "#ffffff", title: "Pure White" },
 ];
 
+// Augment the base collection with random size and price at module load.
+const SIZES = ["S", "M", "L", "XL"] as const;
+
+function getRandomSize(): typeof SIZES[number] {
+  const idx = Math.floor(Math.random() * SIZES.length);
+  return SIZES[idx];
+}
+
+function getRandomPrice(min = 10, max = 100): number {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+export const TSHIRT_COLLECTION_AUGMENTED = TSHIRT_COLLECTION.map((t) => ({
+  ...t,
+  size: getRandomSize(),
+  price: getRandomPrice(),
+}));
+
 function darkenColor(
   color: { r: number; g: number; b: number },
   factor: number,
