@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useMemo } from "react";
 import { renderTShirt } from "../utils/tshirt.js";
 import Button from "./Button.js";
 import "../styles/Card.css";
@@ -13,6 +13,10 @@ interface CardProps {
   onRemoveFromCart: (productId: string) => Promise<void>;
 }
 
+const SIZES = ['S', 'M', 'L', 'XL'] as const;
+const MIN_PRICE = 10;
+const MAX_PRICE = 100;
+
 const Card: React.FC<CardProps> = ({ 
   id, 
   color, 
@@ -23,6 +27,13 @@ const Card: React.FC<CardProps> = ({
   onRemoveFromCart 
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  
+  // Generate random size and price (memoized per card id to stay consistent)
+  const { size, price } = useMemo(() => {
+    const randomSize = SIZES[Math.floor(Math.random() * SIZES.length)];
+    const randomPrice = Math.floor(Math.random() * (MAX_PRICE - MIN_PRICE + 1)) + MIN_PRICE;
+    return { size: randomSize, price: randomPrice };
+  }, [id]);
 
   useEffect(() => {
     if (canvasRef.current) {
@@ -51,6 +62,10 @@ const Card: React.FC<CardProps> = ({
         height={150}
       />
       <h3>{title}</h3>
+      <div className="card-details">
+        <div className="card-size">Size: {size}</div>
+        <div className="card-price">Price: ${price}</div>
+      </div>
       <Button 
         text={isInCart ? "Remove from cart" : "Add to cart"} 
         onClick={handleCartAction} 
