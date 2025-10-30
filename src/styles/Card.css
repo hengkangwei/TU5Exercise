@@ -29,9 +29,24 @@
   & h3 {
     font-size: 16px;
     color: var(--brand-dark-purple);
-    margin: 0 0 12px 0;
+    margin: 0 0 8px 0;
     font-weight: 600;
     font-family: inherit;
+  }
+
+  & .card-details {
+    margin: 0 0 12px 0;
+    width: 100%;
+  }
+
+  & .card-size,
+  & .card-price {
+    font-size: 14px;
+    color: var(--brand-dark-purple);
+    margin: 2px 0;
+    font-weight: 400;
+    font-family: inherit;
+    text-align: center;
   }
 
   & .cart-banner {
